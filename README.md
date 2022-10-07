@@ -2,7 +2,7 @@ MedicalRecordSystem
 This platform is to provide User friendly record system for the users, mainly physicans and their secretaries.
 
 User Stories
-1. User can create, edit the patients info.
+1. User can create, add, edit the patients info.
 2. Any registered Users can see all the data.
 3. User can login/logout
 
