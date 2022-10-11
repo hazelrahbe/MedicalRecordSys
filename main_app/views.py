@@ -1,3 +1,5 @@
+from multiprocessing import context
+from re import template
 from django.shortcuts import redirect, render
 from django.views import View
 from django.http import HttpResponse
@@ -6,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from .models import Docs, Patient
 # Create your views here.
 class Home(View):
     def get(self, request):
@@ -29,9 +32,23 @@ class Signup(View):
         else:
             return redirect("signup")
 
-class Docs(View):
-    def get(self, request):
-        return HttpResponse("docs")
+# class Docs(View):
+#     def get(self, request):
+#         return HttpResponse("This is the page for Docs")
 
-class Docs(TemplateView):
-    template_name = 'docs.html'
+class DocsList(TemplateView):
+    model = Docs
+    template_name = "docs.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["docs"] = Docs.objects.all()
+        return context
+
+# class Patient(View):
+#     def get(self, request):
+#         return HttpResponse("patient")
+
+class PatientList(TemplateView):
+    model = Patient
+    template_name = 'patient.html'
