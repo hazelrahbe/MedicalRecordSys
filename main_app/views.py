@@ -10,6 +10,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Docs, Patient
+
 # Create your views here.
 class Home(View):
     def get(self, request):
@@ -53,4 +54,9 @@ class DocsList(TemplateView):
 
 class PatientList(TemplateView):
     model = Patient
-    template_name = 'patient.html'
+    template_name = "patient.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['patient'] = Patient.objects.all()
+        return context

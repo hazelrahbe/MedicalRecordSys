@@ -1,0 +1,12 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div>
+    <h3>This is the page for {{user.username}}</h3>
+    {% for patient in patients %}
+    <h4>Patient Name: {{patient.firstname}} {{patient.lastname}}</h4>
+    <h4>Enthicity: {{patient.ethnicity}}</h4>
+    <h4>D.O.B: {{patient.dob}}</h4>
+    {% endfor %}
+</div>
+
+{% endblock %}
