@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from .models import Docs, Patient
 # Create your views here.
 class Home(View):
@@ -28,7 +29,7 @@ class Signup(View):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("home")
+            return redirect("docs")
         else:
             return redirect("signup")
 
@@ -36,6 +37,7 @@ class Signup(View):
 #     def get(self, request):
 #         return HttpResponse("This is the page for Docs")
 
+# @method_decorator(login_required, name='dispatch')
 class DocsList(TemplateView):
     model = Docs
     template_name = "docs.html"
