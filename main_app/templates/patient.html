@@ -1,11 +1,12 @@
 {% extends 'base.html' %} 
 {% block content %}
 <div>
+    <a class="button is-dark" href="{% url 'patient_create' %}">Add Patient</a>
     <h3>This is the page for {{user.username}}</h3>
-    {% for patient in patients %}
-    <h4>Patient Name: {{patient.firstname}} {{patient.lastname}}</h4>
-    <h4>Enthicity: {{patient.ethnicity}}</h4>
-    <h4>D.O.B: {{patient.dob}}</h4>
+    {% for p in patient %}
+    <h4>Patient Name: {{p.firstname}} {{p.lastname}}</h4>
+    <h4>Enthicity: {{p.ethnicity}}</h4>
+    <h4>D.O.B: {{p.dob}}</h4>
     {% endfor %}
 </div>
 

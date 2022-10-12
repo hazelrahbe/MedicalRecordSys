@@ -10,7 +10,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Docs, Patient
-
+from django.views.generic.edit import CreateView
 # Create your views here.
 class Home(View):
     def get(self, request):
@@ -60,3 +60,11 @@ class PatientList(TemplateView):
         context = super().get_context_data(**kwargs)
         context['patient'] = Patient.objects.all()
         return context
+
+class PatientCreate(CreateView):
+    model = Patient
+    fields = ['firstname', 'lastname', 'ethnicity', 'dob']
+    template_name = "patient_create.html"
+    def form_valid(self, form):
+        return super(PatientCreate, self).form_valid(form)
+    success_url = "/patient/"
