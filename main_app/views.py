@@ -60,12 +60,10 @@ class PatientList(TemplateView):
         context = super().get_context_data(**kwargs)
         # context['patient'] = Patient.objects.all()
         searchName = self.request.GET.get("lastname")
-
         if searchName != None:
-            context["patient"] = Patient.objects.filter(name__icontains=searchName)
+            context["patient"] = Patient.objects.filter(lastname__icontains=searchName)
         else:
-            context["patient"] = Patient.objects.filter()
-            context["header"] = "Patient Details"
+            context["patient"] = Patient.objects.all()
         return context
 
 class PatientCreate(CreateView):

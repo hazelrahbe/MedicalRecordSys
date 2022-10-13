@@ -12,12 +12,25 @@
     </div>
     <a class="button is-dark" href="{% url 'patient' %}">Clear Search</a>
     </form>
-    {% for p in patient %}
-    <li>
-    <h5>Patient Name: {{p.firstname}} {{p.lastname}}</h5>
-    <h5>Enthicity: {{p.ethnicity}}</h5>
-    <h5>D.O.B: {{p.dob}}</h5>
-    </li>
-    {% endfor %}
+    <div>
+        <table style="padding: 20px;">
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Enthicity</th>
+                    <th>DOB</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in patient %}
+                    <tr>
+                        <td>{{p.firstname}} {{p.lastname}}</td>
+                        <td>{{p.ethnicity}}</td>
+                        <td>{{p.dob}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
