@@ -38,14 +38,14 @@ class Signup(View):
 #     def get(self, request):
 #         return HttpResponse("This is the page for Docs")
 
-# @method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class DocsList(TemplateView):
     model = Docs
     template_name = "docs.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["docs"] = Docs.objects.all()
+        context["docs"] = Docs.objects.filter(user=self.request.user)
         return context
 
 # class Patient(View):
@@ -58,7 +58,14 @@ class PatientList(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['patient'] = Patient.objects.all()
+        # context['patient'] = Patient.objects.all()
+        searchName = self.request.GET.get("lastname")
+
+        if searchName != None:
+            context["patient"] = Patient.objects.filter(name__icontains=searchName)
+        else:
+            context["patient"] = Patient.objects.filter()
+            context["header"] = "Patient Details"
         return context
 
 class PatientCreate(CreateView):

@@ -1,13 +1,23 @@
 {% extends 'base.html' %} 
 {% block content %}
 <div>
-    <a class="button is-dark" href="{% url 'patient_create' %}">Add Patient</a>
     <h3>This is the page for {{user.username}}</h3>
+    <a class="button is-dark" href="{% url 'patient_create' %}">Add Patient</a>
+    <form method="get">
+    <div class="control">
+        <input class="input" style="max-width: 150px;" type="text" name="lastname" placeholder="lastname" />
+    </div>
+    <div class="control">
+        <input class="button is-dark" type="submit" value="Search" />
+    </div>
+    <a class="button is-dark" href="{% url 'patient' %}">Clear Search</a>
+    </form>
     {% for p in patient %}
-    <h4>Patient Name: {{p.firstname}} {{p.lastname}}</h4>
-    <h4>Enthicity: {{p.ethnicity}}</h4>
-    <h4>D.O.B: {{p.dob}}</h4>
+    <li>
+    <h5>Patient Name: {{p.firstname}} {{p.lastname}}</h5>
+    <h5>Enthicity: {{p.ethnicity}}</h5>
+    <h5>D.O.B: {{p.dob}}</h5>
+    </li>
     {% endfor %}
 </div>
-
 {% endblock %}
