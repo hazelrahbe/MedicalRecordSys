@@ -33,7 +33,8 @@ class Signup(View):
             login(request, user)
             return redirect("docs")
         else:
-            return redirect("signup")
+            context = {"form": form}
+            return render(request, "registration/signup.html", context)
 
 # class Docs(View):
 #     def get(self, request):
