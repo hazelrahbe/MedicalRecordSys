@@ -9,8 +9,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Docs, Patient
+from .models import Docs, Patient, Records
 from django.views.generic.edit import CreateView
+from django.views.generic import DetailView
 # Create your views here.
 class Home(View):
     def get(self, request):
@@ -73,3 +74,7 @@ class PatientCreate(CreateView):
     def form_valid(self, form):
         return super(PatientCreate, self).form_valid(form)
     success_url = "/patient/"
+
+class RecordDeets(DetailView):
+    model = Records
+    template_name = "patient_details.html"

@@ -1,3 +1,4 @@
+from enum import auto
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -22,3 +23,16 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.lastname
+
+class Records(models.Model):
+    history = models.CharField(max_length=200)
+    allegries = models.CharField(max_length=150)
+    condition = models.CharField(max_length=200)
+    labresults = models.CharField(max_length=200)
+    notes = models.CharField(max_length=300)
+    patient = models.OneToOneField(Patient, on_delete=models.CASCADE)
+    docs = models.ForeignKey(Docs, on_delete=models.CASCADE, default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.patient.lastname
