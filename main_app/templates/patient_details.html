@@ -9,17 +9,29 @@
         <li><a href="?tab=labresults">Lab Results</a></li>
         <li><a href="?tab=notes">Notes</a></li>
     </ul>
-        {% for record in patient.records.all%}
     <div id="my-tab-content" class="tab-content">
+        {% for record in patient.records_set.all %}
+        {% if tab == "history" %}
         <div class="active" id="history">
-            <p>{{records.history}}</p>
+            <p>{{record.history}}</p>
         </div>
+        {% elif tab == "allegries" %}
         <div id="allergies">
-            <p>{{records.allergies}}</p>
+            <p>{{record.allegries}}</p>
         </div>
+        {% elif tab == "condition" %}
         <div id="condition">
-            <p>{{records.notes}}</p>
+            <p>{{record.condition}}</p>
         </div>
+        {% elif tab == "labresults" %}
+        <div id="labresults">
+            <p>{{record.labresults}}</p>
+        </div>
+        {% elif tab == "notes" %}
+        <div id="notes">
+            <p>{{record.notes}}</p>
+        </div>
+        {% endif %}
     </div>
         {% endfor %}
 {% endblock %}
