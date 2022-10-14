@@ -23,12 +23,11 @@
             </thead>
             <tbody>
                 {% for p in patient %}
-                    <tr>
-                        <td>{{p.firstname}} {{p.lastname}}</td>
-                        <td>{{p.ethnicity}}</td>
-                        <td>{{p.dob}}</td>
-                    </tr>
-                </a>
+                <tr>
+                    <td> <a href="{% url 'patient_details' p.pk%}">{{p.firstname}} {{p.lastname}}</td></a>
+                    <td>{{p.ethnicity}}</td>
+                    <td>{{p.dob}}</td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>

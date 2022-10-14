@@ -75,6 +75,18 @@ class PatientCreate(CreateView):
         return super(PatientCreate, self).form_valid(form)
     success_url = "/patient/"
 
-class RecordDeets(DetailView):
+class RecordDeets(TemplateView):
     model = Records
     template_name = "patient_details.html"
+
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        # print(context)
+        context["patient"] = Patient.objects.get(pk=context['pk'])
+        context['records'] = Records.objects.all()
+        tab = self.request.GET.get('tab')
+        print(tab)
+        if tab == 'history':
+            context['display'] = Records.objects.get(pk=pk).records
+            print(f'display is {display}')
+        return context

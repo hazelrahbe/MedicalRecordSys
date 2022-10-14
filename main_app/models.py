@@ -30,7 +30,7 @@ class Records(models.Model):
     condition = models.CharField(max_length=200)
     labresults = models.CharField(max_length=200)
     notes = models.CharField(max_length=300)
-    patient = models.OneToOneField(Patient, on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     docs = models.ForeignKey(Docs, on_delete=models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
 

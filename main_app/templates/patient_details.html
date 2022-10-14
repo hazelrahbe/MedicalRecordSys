@@ -1,27 +1,25 @@
-<!-- {% extends "base.html" %}
-{% block content %}
-<h3>Demo</h3>
-
+{% extends "base.html" %}
+{% block content %} 
+    {{ patient }}
+    <h5>{{patient.lastname}}, {{patient.firstname}}</h5>
     <ul class="tabs" data-tabs="tabs">
-        <li class="active"><a href="#django">Django</a></li>
-        <li><a href="#bootstrap">Bootstrap</a></li>
-        <li><a href="#jquery">jQuery</a></li>
-        <li><a href="#github">GitHub</a></li>
+        <li class="active"><a href="?tab=history">History</a></li>
+        <li><a href="?tab=allegries">Allegries</a></li>
+        <li><a href="?tab=condition">Condition</a></li>
+        <li><a href="?tab=labresults">Lab Results</a></li>
+        <li><a href="?tab=notes">Notes</a></li>
     </ul>
-
+        {% for record in patient.records.all%}
     <div id="my-tab-content" class="tab-content">
-        <div class="active" id="django">
-            <p>Django is pretty awesome.</p>
+        <div class="active" id="history">
+            <p>{{records.history}}</p>
         </div>
-        <div id="bootstrap">
-            <p>Bootstrap is cooler than ice.</p>
+        <div id="allergies">
+            <p>{{records.allergies}}</p>
         </div>
-        <div id="jquery">
-            <p>jQuery makes JavaScript smile.</p>
-        </div>
-        <div id="github">
-            <p>GitHub keeps our code warm.</p>
+        <div id="condition">
+            <p>{{records.notes}}</p>
         </div>
     </div>
-
-{% endblock %} -->
+        {% endfor %}
+{% endblock %}
