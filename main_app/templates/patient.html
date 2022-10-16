@@ -1,19 +1,20 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
-<div>
-    <h3>This is the page for {{user.username}}</h3>
-    <a class="button is-dark" href="{% url 'patient_create' %}">Add Patient</a>
-    <form method="get">
-    <div class="control">
-        <input class="input" style="max-width: 150px;" type="text" name="lastname" placeholder="lastname" />
+<div class="container">
+    <div class="row" style="gap: 20px; margin-top: 20px;">
+        <a class="button is-dark col-md-2" href="{% url 'patient_create' %}">Add Patient</a>
+        <form class="row" style="gap: 20px;" method="get">
+            <div class="control">
+                <input class="input col-sm-" style="max-width: 150px;" type="text" name="lastname" placeholder="lastname" />
+            </div>
+            <div class="control">
+                <input class="button is-dark col-sm-" type="submit" value="Search" />
+            </div>
+            <a class="button is-dark col-sm-" href="{% url 'patient' %}">Clear Search</a>
+        </form>
     </div>
-    <div class="control">
-        <input class="button is-dark" type="submit" value="Search" />
-    </div>
-    <a class="button is-dark" href="{% url 'patient' %}">Clear Search</a>
-    </form>
-    <div>
-        <table style="padding: 20px;">
+    <div class="table" style="margin-top: 20px;">
+        <table>
             <thead>
                 <tr>
                     <th>Patient Name</th>

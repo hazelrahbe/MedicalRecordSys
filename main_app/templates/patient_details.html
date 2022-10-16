@@ -13,23 +13,23 @@
         {% for record in patient.records_set.all %}
         {% if tab == "history" %}
         <div class="active" id="history">
-            <p>{{record.history}}</p>
+            <li>{{record.history}}</li>
         </div>
         {% elif tab == "allegries" %}
         <div id="allergies">
-            <p>{{record.allegries}}</p>
+            <li>{{record.allegries}}</li>
         </div>
         {% elif tab == "condition" %}
         <div id="condition">
-            <p>{{record.condition}}</p>
+            <li>{{record.condition}}</li>
         </div>
         {% elif tab == "labresults" %}
         <div id="labresults">
-            <p>{{record.labresults}}</p>
+            <li>{{record.labresults}}</li>
         </div>
         {% elif tab == "notes" %}
         <div id="notes">
-            <p>{{record.notes}}</p>
+            <li>{{record.notes}}</li>
         </div>
         {% endif %}
     </div>
