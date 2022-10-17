@@ -32,7 +32,7 @@ class Records(models.Model):
     labresults = models.CharField(max_length=200, default='none')
     notes = models.CharField(max_length=300, default='none')
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    docs = models.ForeignKey(Docs, on_delete=models.CASCADE, default=6)
+    docs = models.ForeignKey(Docs, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
