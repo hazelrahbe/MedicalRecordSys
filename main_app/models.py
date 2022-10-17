@@ -26,11 +26,11 @@ class Patient(models.Model):
         return self.lastname
 
 class Records(models.Model):
-    history = models.CharField(max_length=200)
-    allegries = models.CharField(max_length=150)
-    condition = models.CharField(max_length=200)
-    labresults = models.CharField(max_length=200)
-    notes = models.CharField(max_length=300)
+    history = models.CharField(max_length=200, null=True)
+    allegries = models.CharField(max_length=150, null=True)
+    condition = models.CharField(max_length=200, null=True)
+    labresults = models.CharField(max_length=200, null=True)
+    notes = models.CharField(max_length=300, null=True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     docs = models.ForeignKey(Docs, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
