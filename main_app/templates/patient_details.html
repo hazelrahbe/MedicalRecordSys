@@ -32,7 +32,7 @@
             <li>{{record.notes}}</li>
         </div>
         {% endif %}
-    </div>
+
         {% endfor %}
         <form action="{% url 'patient_details_update' patient.pk %}"method="post">
             {% csrf_token %} 
@@ -47,5 +47,6 @@
             <label for="fieldValue">Enter text:</label>
             <input type="text" name="fieldValue">
             <button class="button is-dark">Submit</button>
-        </form>   
+        </form>
+    </div>
 {% endblock %}
