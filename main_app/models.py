@@ -12,7 +12,7 @@ class Docs(models.Model):
     email = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.lastname
 
@@ -32,7 +32,7 @@ class Records(models.Model):
     labresults = models.CharField(max_length=200, default='none')
     notes = models.CharField(max_length=300, default='none')
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    docs = models.ForeignKey(Docs, on_delete=models.CASCADE, default=1)
+    docs = models.ForeignKey(Docs, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
