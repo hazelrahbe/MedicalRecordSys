@@ -34,4 +34,18 @@
         {% endif %}
     </div>
         {% endfor %}
+        <form action="{% url 'patient_details_update' patient.pk %}"method="post">
+            {% csrf_token %} 
+            <label for="field">Choose a field:</label>
+            <select id="field" name="field">
+                <option value="history">History</option>
+                <option value="allegries">Allegries</option>
+                <option value="condition">Condition</option>
+                <option value="labresults">Lab Results</option>
+                <option value="notes">Notes</option>
+            </select>
+            <label for="fieldValue">Enter text:</label>
+            <input type="text" name="fieldValue">
+            <button class="button is-dark">Submit</button>
+        </form>   
 {% endblock %}

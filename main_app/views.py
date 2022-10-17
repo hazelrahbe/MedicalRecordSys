@@ -1,5 +1,3 @@
-from multiprocessing import context
-from re import template
 from django.shortcuts import redirect, render
 from django.views import View
 from django.http import HttpResponse
@@ -10,8 +8,9 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Docs, Patient, Records
-from django.views.generic.edit import CreateView
-from django.views.generic import DetailView
+from django.views.generic.edit import CreateView, UpdateView
+from django.urls import reverse
+
 # Create your views here.
 class Home(View):
     def get(self, request):
@@ -87,3 +86,24 @@ class RecordDeets(TemplateView):
         context['tab'] = tab
         print(context)
         return context
+
+class RecordDeetsUpdate(View):
+
+    def post(self, request, pk):
+        field = request.POST.get("field")
+        print(field)
+        fieldValue = request.POST.get("fieldValue")
+        print(fieldValue)
+        patient = Patient.objects.get(pk=pk)
+        print(patient)
+        if field == 'history':
+            Records.objects.create(history=fieldValue, patient=patient)
+        elif field == 'allegries':
+            Records.objects.create(allegries=fieldValue, patient=patient)
+        elif field == 'condtion':
+            Records.objects.create(condition=fieldValue, patient=patient)
+        elif field == 'labresults':
+            Records.objects.create(labresults=fieldValue, patient=patient)
+        elif field == 'notes':
+            Records.objects.create(notes=fieldValue, patient=patient)
+        return redirect('patient_details', pk=pk)
